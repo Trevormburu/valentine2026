@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Question 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe5f1 100%);
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+
+        .yes-btn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .no-btn {
+            background: #f0f0f0;
+            color: #666;
+            position: absolute;
+        }
+
+        .hint {
+            color: #999;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .success-message {
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message h2 {
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .question {
+            display: block;
+        }
+
+        .question.hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question" id="question">
+            <h1>Will you be my Valentine? 💕</h1>
+            <div class="buttons">
+                <button class="yes-btn" onclick="sayYes()">Yes</button>
+                <button class="no-btn" id="noBtn" onmouseover="moveButton()">No</button>
+            </div>
+            <p class="hint">the no button seems a lil shaky</p>
+        </div>
+
+        <div class="success-message" id="success">
+            <div class="heart">💕</div>
+            <h2>Yeeey right choice 💕</h2>
+        </div>
+    </div>
+
+    <script>
+        function sayYes() {
+            document.getElementById('question').classList.add('hide');
+            document.getElementById('success').classList.add('show');
+        }
+
+        function moveButton() {
+            const button = document.getElementById('noBtn');
+            const container = button.parentElement;
+            
+            const maxX = container.offsetWidth - button.offsetWidth;
+            const maxY = container.offsetHeight - button.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
